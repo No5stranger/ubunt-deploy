@@ -1,4 +1,4 @@
 ubunt-deploy
 ============
 
-deploy ubuntu by playbooks
+Deploy ubuntu environment for php

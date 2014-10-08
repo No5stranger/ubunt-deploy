@@ -1,0 +1,4 @@
+---
+- name: Copy ubuntu source.list
+  template: src=source.list dest=/etc/apt/source.list
+  sudo: yes

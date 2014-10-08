@@ -1,0 +1,11 @@
+## ubuntu main respository
+deb {{ ubuntu_mirror }} {{ ansible_distribution_release }} main universe
+deb-src {{ ubuntu_mirror }} {{ ansible_distribution_release }} main universe
+
+## ubuntu update respository
+deb {{ ubuntu_mirror }} {{ ansible_distribution_release }}-updates main universe
+deb-src {{ ubuntu_mirror }} {{ ansible_distribution_release }}-updates main universe
+
+## ubuntu security respository
+deb {{ ubuntu_mirror }} {{ ansible_distribution_release }}-security main universe
+deb-src {{ ubuntu_mirror }} {{ ansible_distribution_release }}-security main universe

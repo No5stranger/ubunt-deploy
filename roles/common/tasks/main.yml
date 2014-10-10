@@ -1,0 +1,17 @@
+---
+- name: Copy ubuntu source.list
+  template: src=source.list dest=/etc/apt/source.list
+  sudo: yes
+
+- name: systme update
+  apt: update_cache=yes
+  sudo: yes
+
+- name: Install essential
+  apt: name= {{ item }} state=present
+  with_itmes:
+    - git
+    - zsh
+    - vim
+    - tmux
+  sudo: yes

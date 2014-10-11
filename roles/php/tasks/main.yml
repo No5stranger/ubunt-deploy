@@ -1,0 +1,43 @@
+---
+- name: Install mcrypt
+  apt: name=mcrypt state=present
+  sudo: yes
+
+- name: Install php and require component
+  apt: name={{ item }} state=present
+  with_item:
+    - php5
+    - php5-dev
+    - php5-cli
+    - php5-fpm
+    - php5-mysql
+    - php5-sqlite
+    - php5-mongo
+    - php5-curl
+    - php5-json
+    - php5-gd
+    - php5-xhprof
+    - php5-mcrypt
+  sudo: yes
+
+- name: copy ini file
+  copy:
+    src={{ item }}.ini
+    dest=/etc/php5/mods-available/{{ item }}.ini
+    owner=root
+    group=root
+    mode=0664
+  with_item:
+    - mcrypt
+    - xhprof
+  sudo: yes
+
+- name: enable ini
+  file:
+    state=link
+    src=/etc/php5/mods-available/{{ itme[0] }}.ini
+    dest=/etc/php5/{{ item[1] }}/conf.d/20-{{ item[0] }}.ini
+  with_nested:
+    - [ 'xhprof', 'mcrypt' ]
+    - [ 'cli', 'fpm' ]
+  sudo: yes
